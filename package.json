@@ -1,8 +1,8 @@
 {
   "name": "grunt-mocker",
-  "description": "Generating jquery mockjax mock for RESTful servises",
-  "version": "0.1.0",
-  "homepage": "https://github.com/denis_raslov/grunt-mocker",
+  "description": "Generating jquery mockjax mocks for RESTful services",
+  "version": "0.1.2",
+  "homepage": "https://github.com/denisraslov/grunt-mocker",
   "author": {
     "name": "Denis Raslov",
     "email": "denis.raslov@yandex.ru",
@@ -37,7 +37,12 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "mocks",
+    "jquery mockjax",
+    "js mocks generation",
+    "rest",
+    "data"
   ],
   "dependencies": {
     "lodash": "^3.5.0"

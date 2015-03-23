@@ -1,6 +1,6 @@
 /*
  * grunt-mocker
- * https://github.com/denis_raslov/grunt-mocker
+ * https://github.com/denisraslov/grunt-mocker
  *
  * Copyright (c) 2015 Denis Raslov
  * Licensed under the MIT license.
@@ -10,9 +10,11 @@
 
 module.exports = function (grunt) {
 
-    grunt.registerMultiTask('mocker', 'Generating jquery mockjax mock for RESTful servises', function () {
+    grunt.registerMultiTask('mocker', 'Generating jquery mockjax mocks for RESTful services', function () {
 
-        var settings = grunt.file.readJSON(this.settings);
+        var options = this.options({});
+
+        var settings = grunt.file.readJSON(options.settings);
         var templates = {
             data: grunt.file.read('template/data.js'),
             get: grunt.file.read('template/get.js'),
@@ -103,21 +105,21 @@ module.exports = function (grunt) {
                     data: JSON.stringify(entities)
                 }
             });
-            grunt.file.write('mocks/' + index + '/data.js', content);
+            grunt.file.write(options.dest + '/' + index + '/data.js', content);
 
             content = grunt.template.process(templates.get, {
                 data: {
                     url: index
                 }
             });
-            grunt.file.write('mocks/' + index + '/get.js', content);
+            grunt.file.write(options.dest + '/' + index + '/get.js', content);
 
             content = grunt.template.process(templates.put, {
                 data: {
                     url: index
                 }
             });
-            grunt.file.write('mocks/' + index + '/put.js', content);
+            grunt.file.write(options.dest + '/' + index + '/put.js', content);
 
             grunt.log.writeln('Mocks for "' + index + '" generated.');
         });

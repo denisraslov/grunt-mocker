@@ -1,6 +1,6 @@
 /*
  * grunt-mocker
- * https://github.com/Denis/grunt-mocker
+ * https://github.com/denisraslov/grunt-mocker
  *
  * Copyright (c) 2015 Denis Raslov
  * Licensed under the MIT license.
