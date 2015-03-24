@@ -32,6 +32,10 @@ grunt.initConfig({
 });
 ```
 
+### Why
+
+Because I can.
+
 ### Options
 
 #### options.template
@@ -49,11 +53,13 @@ A path to the folder where mocks files will created in.
 ```js
 [
   {
-    entity: {entity_name}
-    count: {count}
-    {field_name}: {FieldType} 
+    entity: {entity_name},
+    count: {count},
+    data: 
+    {
+      {field_name}: {FieldType}
+    }
   },
-
 ]
 ```
 ## FieldType
