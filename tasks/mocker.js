@@ -71,14 +71,37 @@ module.exports = function (grunt) {
                             case 'String':
                                 value = index + '-' + entity.id;
                                 break;
+                            case 'Date':
+                                value = (new Date()).getTime() - getRandomInt(1000, 10000) * 1000;
+                                break;
                             default:
-                                if (value[0] == '*') {
+                                if (_.isArray(value)) {
+                                    value = value[getRandomInt(0, value.length - 1)];
+
+                                } else if (value[0] == '*') {
+
                                     referEntityIndex = value.substr(1, value.length - 1);
                                     generateEntities(referEntityIndex);
 
                                     referEntities = generatedData[referEntityIndex];
 
                                     value = referEntities[getRandomInt(0, referEntities.length - 1)].id;
+
+                                } else if (value[0] == '[') {
+
+                                    var endQuoteIndex = value.indexOf(']'),
+                                        itemsCount = value.substr(1, endQuoteIndex - 1),
+                                        referEntityIndex = value.substr(endQuoteIndex + 1,
+                                            value.length - itemsCount.toString().length - 2);
+
+                                    generateEntities(referEntityIndex);
+                                    referEntities = generatedData[referEntityIndex];
+
+                                    value = [];
+
+                                    for (var i = 1; i <= itemsCount; i++) {
+                                        value.push(referEntities[getRandomInt(0, referEntities.length - 1)].id)
+                                    }
                                 }
                                 break;
                         }
