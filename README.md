@@ -49,9 +49,9 @@ A path to the folder where mocks files will created in.
 ```js
 [
   {
-    entity: {entity name}
+    entity: {entity_name}
     count: {count}
-    {fieldName}: {FieldType} 
+    {field_name}: {FieldType} 
   },
 
 ]
@@ -75,15 +75,15 @@ For example:
 
 ## References to another entities
 
-If an entity must refer to enother entity, use following syntax: 
+If an entity must refer to another entity, use following syntax: 
 
-`*{referred entity name}` - reference to `referred entity name`, it will taken random element of generated `referred entity name`-entities.
+`*{referred_entity_name}` - reference to `referred_entity_name`, it will taken random element of generated `referred_entity_name`.
 
-`*{referred entity name}.id` - the same to previous but the only `id` of `referred entity name` element will taken.
+`*{referred_entity_name}.id` - the same to previous but the only `id` of `referred_entity_name` element will taken.
 
-`[{count}]{referred entity name}` - array (with the according length) of references to `referred entity name` elements, it will taken random elements of generated `referred entity name`-entities. 
+`[{count}]{referred_entity_name}` - array (with the according length) of references to `referred_entity_name` elements, it will taken random elements of generated `referred entity name`-entities. 
 
-`[{count}]{referred entity name}.id` - the same to previous but the only `id` of `referred entity name` elements will taken.
+`[{count}]{referred_entity_name}.id` - the same to previous but the only `id` of `referred_entity_name` elements will taken.
 
 For example: 
 
