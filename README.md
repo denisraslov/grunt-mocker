@@ -50,7 +50,7 @@ A path to the folder where mocks files will created in.
 [
   {
     entity: {entity name}
-    count: {number of entries needs to be generated}
+    count: {count}
     {fieldName}: {FieldType} 
   },
 
@@ -78,10 +78,12 @@ For example:
 If an entity must refer to enother entity, use following syntax: 
 
 `*{referred entity name}` - reference to `referred entity name`, it will taken random element of generated `referred entity name`-entities.
+
 `*{referred entity name}.id` - the same to previous but the only `id` of `referred entity name` element will taken.
 
-`[{number of entries needs to be generated}]{referred entity name}` - array (with the according length) of references to `referred entity name` elements, it will taken random elements of generated `referred entity name`-entities. 
-`[{number of entries needs to be generated}]{referred entity name}.id` - the same to previous but the only `id` of `referred entity name` elements will taken.
+`[{count}]{referred entity name}` - array (with the according length) of references to `referred entity name` elements, it will taken random elements of generated `referred entity name`-entities. 
+
+`[{count}]{referred entity name}.id` - the same to previous but the only `id` of `referred entity name` elements will taken.
 
 For example: 
 
