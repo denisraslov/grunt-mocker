@@ -56,8 +56,47 @@ A path to the folder where mocks files will created in.
 
 ]
 ```
+## FieldType
 
-`FieldType` - can be `String`, `NumberInt`, `NumberFloat`, `Boolean`, `Date`, `*{referred entity name}`
+# Primitive values
+
+`String`, `NumberInt`, `NumberFloat`, `Boolean`, `Date`. 
+It will be generated random value with according type.
+
+# Values set
+
+Use an array of allowable values to make mocker take random element from it.
+
+For example: 
+
+```js
+"sortDirection": ["ASC", "DESC", "NONE"]
+```
+
+# References to another entities
+
+If an entity must refer to enother entity, use following syntax: 
+
+`*{referred entity name}` - reference to `referred entity name`, it will taken random element of generated `referred entity name`-entities.
+`*{referred entity name}.id` - the same to previous but the only `id` of `referred entity name` element will taken.
+
+`[{number of entries needs to be generated}]{referred entity name}` - array (with the according length) of references to `referred entity name` elements, it will taken random elements of generated `referred entity name`-entities. 
+`[{number of entries needs to be generated}]{referred entity name}.id` - the same to previous but the only `id` of `referred entity name` elements will taken.
+
+For example: 
+
+```js
+{
+  "entity": "computer",
+  {
+    "user": "*users",
+    "userId": "*users.id",
+    "users": "[5]users",
+    "userIds": "[5]users.id"
+  }
+}
+```
+
 
 ### Usage Examples
 
