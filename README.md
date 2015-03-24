@@ -58,12 +58,12 @@ A path to the folder where mocks files will created in.
 ```
 ## FieldType
 
-# Primitive values
+## Primitive values
 
 `String`, `NumberInt`, `NumberFloat`, `Boolean`, `Date`. 
 It will be generated random value with according type.
 
-# Values set
+## Values set
 
 Use an array of allowable values to make mocker take random element from it.
 
@@ -73,7 +73,7 @@ For example:
 "sortDirection": ["ASC", "DESC", "NONE"]
 ```
 
-# References to another entities
+## References to another entities
 
 If an entity must refer to enother entity, use following syntax: 
 
