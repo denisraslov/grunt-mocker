@@ -10,15 +10,17 @@
 
 module.exports = function (grunt) {
 
-    grunt.registerMultiTask('mocker', 'Generating jquery mockjax mocks for RESTful services', function () {
+    grunt.registerTask('mocker', 'Generating jquery mockjax mocks for RESTful services', function () {
+
+        var _ = require('lodash');
 
         var options = this.options({});
 
-        var settings = grunt.file.readJSON(options.settings);
+        var settings = grunt.file.readJSON(options.template);
         var templates = {
-            data: grunt.file.read('template/data.js'),
-            get: grunt.file.read('template/get.js'),
-            put: grunt.file.read('template/put.js')
+            data: grunt.file.read(__dirname + '/templates/data.js'),
+            get: grunt.file.read(__dirname + '/templates/get.js'),
+            put: grunt.file.read(__dirname + '/templates/put.js')
         };
 
         var generatedData = {};
