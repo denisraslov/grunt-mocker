@@ -2,6 +2,10 @@
 
 > Generating jquery mockjax mocks for RESTful services
 
+## Why
+
+Because I can.
+
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
@@ -31,10 +35,6 @@ grunt.initConfig({
   },
 });
 ```
-
-### Why
-
-Because I can.
 
 ### Options
 
