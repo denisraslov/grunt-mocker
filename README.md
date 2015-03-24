@@ -1,6 +1,6 @@
 # grunt-mocker
 
-> Generating jquery mockjax mock for RESTful servises
+> Generating jquery mockjax mocks for RESTful services
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -28,26 +28,36 @@ grunt.initConfig({
     options: {
       // Task-specific options go here.
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
   },
 });
 ```
 
 ### Options
 
-#### options.separator
+#### options.template
 Type: `String`
-Default value: `',  '`
 
-A string value that is used to do something with whatever.
+A path to the file with template of mocks (see template format below).
 
-#### options.punctuation
+#### options.dest
 Type: `String`
-Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+A path to the folder where mocks files will created in.
+
+### Template Format
+
+```js
+[
+  {
+    entity: {entity name}
+    count: {number of entries needs to be generated}
+    {fieldName}: {FieldType} 
+  },
+
+]
+```
+
+`FieldType` - can be `String`, `NumberInt`, `NumberFloat`, `Boolean`, `Date`, `*{referred entity name}`
 
 ### Usage Examples
 
