@@ -3,7 +3,8 @@ define(function(require, exports, module) {
     var ajaxMock = require('kit/ajaxMock/ajaxMock');
 
     ajaxMock({
-        url: '/legalEntities/*/bankAccounts/*',
+        url: '<%- url %>/*',
+        contentType: 'application/json',
         type: 'DELETE',
         status: 204
     });

@@ -20,7 +20,8 @@ module.exports = function (grunt) {
         var templates = {
             data: grunt.file.read(__dirname + '/templates/data.js'),
             get: grunt.file.read(__dirname + '/templates/get.js'),
-            put: grunt.file.read(__dirname + '/templates/put.js')
+            put: grunt.file.read(__dirname + '/templates/put.js'),
+            all: grunt.file.read(__dirname + '/templates/all.js')
         };
 
         var generatedData = {};
@@ -123,7 +124,8 @@ module.exports = function (grunt) {
         //-------------------- file writing ---------------------------
 
         _.forIn(generatedData, function (entities, index) {
-            var content;
+            var content,
+                url = options.url + '/' + index;
 
             content = grunt.template.process(templates.data, {
                 data: {
@@ -134,20 +136,28 @@ module.exports = function (grunt) {
 
             content = grunt.template.process(templates.get, {
                 data: {
-                    url: index
+                    url: url
                 }
             });
             grunt.file.write(options.dest + '/' + index + '/get.js', content);
 
             content = grunt.template.process(templates.put, {
                 data: {
-                    url: index
+                    url: url
                 }
             });
             grunt.file.write(options.dest + '/' + index + '/put.js', content);
 
             grunt.log.writeln('Mocks for "' + index + '" generated.');
         });
+
+        grunt.file.write(options.dest + '/mocks.js', grunt.template.process(templates.all, {
+            data: {
+                items: _.map(generatedData, function(entities, index) {
+                    return index;
+                })
+            }
+        }));
     });
 
 };

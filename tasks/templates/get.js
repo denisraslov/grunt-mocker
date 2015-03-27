@@ -1,11 +1,16 @@
 define(function(require, exports, module) {
-    var ajaxMock = require('ajaxMock');
+    require('mockjax');
 
-    return ajaxMock({
-        url: '/<%- url %>',
+    $.mockjax({
+        url: '<%- url %>',
+        contentType: 'application/json',
         type: 'GET',
 
         status: 200,
-        responseText: require('./data')
+        response: function(request) {
+            var data = require('./data');
+
+            this.responseText = data;
+        }
     });
 });

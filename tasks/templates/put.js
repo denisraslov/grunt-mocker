@@ -1,10 +1,12 @@
 define(function(require, exports, module) {
-    var ajaxMock = require('kit/ajaxMock/ajaxMock'),
-        entities = require('./data'),
+    var entities = require('./data'),
         _ = require('lodash');
 
-    return ajaxMock({
+    require('mockjax');
+
+    $.mockjax({
         url: '<%= url + "/*" %>',
+        contentType: 'application/json',
         type: 'PUT',
         response: function(request) {
             var data = JSON.parse(request.data),

@@ -1,6 +1,5 @@
 define(function(require, exports, module) {
-
-    var ajaxMock = require('kit/ajaxMock/ajaxMock');
+    require('mockjax');
 
     return ajaxMock({
         url: '/legalEntities/*/bankAccounts',
