@@ -2,6 +2,10 @@
 
 > Generating jquery mockjax mocks for RESTful services
 
+## Why
+
+Because I can.
+
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
@@ -49,48 +53,101 @@ A path to the folder where mocks files will created in.
 ```js
 [
   {
-    entity: {entity name}
-    count: {number of entries needs to be generated}
-    {fieldName}: {FieldType} 
+    entity: {entity_name},
+    count: {count},
+    data: 
+    {
+      {field_name}: {FieldType}
+    }
   },
-
 ]
 ```
+## FieldType
 
-`FieldType` - can be `String`, `NumberInt`, `NumberFloat`, `Boolean`, `Date`, `*{referred entity name}`
+#### Primitive values
+
+`String`, `NumberInt`, `NumberFloat`, `Boolean`, `Date`. 
+It will be generated random value with according type.
+
+#### Values set
+
+Use an array of allowable values to make mocker take random element from it.
+
+For example: 
+
+```js
+"sortDirection": ["ASC", "DESC", "NONE"]
+```
+
+#### References to another entities
+
+If an entity must refer to another entity, use following syntax: 
+
+`*{referred_entity_name}` - reference to `referred_entity_name`, it will taken random element of generated `referred_entity_name`.
+
+`*{referred_entity_name}.id` - the same to previous but the only `id` of `referred_entity_name` element will taken.
+
+`[{count}]{referred_entity_name}` - array (with the according length) of references to `referred_entity_name` elements, it will taken random elements of generated `referred entity name`-entities. 
+
+`[{count}]{referred_entity_name}.id` - the same to previous but the only `id` of `referred_entity_name` elements will taken.
+
+For example: 
+
+```js
+{
+  "entity": "computer",
+  {
+    "user": "*users",
+    "userId": "*users.id",
+    "users": "[5]users",
+    "userIds": "[5]users.id"
+  }
+}
+```
+
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+#### Template
 
 ```js
-grunt.initConfig({
-  mocker: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+[
+  {
+    "entity": "products",
+    "count": 3,
+    "data": 
+    {
+      "name": "String",
+      "price": "NumberFloat",
+      "crearedAt": "Date",
+      "sortDirection": ["ACS", "DESC", "NONE"],
+      "groupId": "*groups.id"
+    }
   },
-});
+  {
+    "entity": "groups",
+    "count": 3,
+    "data": 
+    {
+      "name": "String",
+      "open": "Boolean"
+    }
+  },
+  {
+    "entity": "user",
+    "count": 2,
+    "data": 
+    {
+      "firstName": "String",
+      "lastName": "String",
+      "groupIds" "[2]groups.id"
+    }
+  }
+]
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+#### Result
 
-```js
-grunt.initConfig({
-  mocker: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
